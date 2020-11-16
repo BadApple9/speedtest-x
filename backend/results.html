@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>测速结果 | speedtest-x</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css"  media="all">
+  <style>
+    .footer {line-height: 30px; text-align: center;}
+    .footer a{padding:0 6px; font-weight: 300;}
+    .footer a:hover{color: green;}
+    .header {line-height: 30px; text-align: center;height:50px;padding-top:50px;}
+  </style>
+</head>
+<body>
+<div class="header">
+  <h1>speedtest-x 测速结果</h1>
+</div>
+
+<table class="layui-hide" id="test"></table>
+
+<div class="footer">
+  <a href="https://github.com/BadApple9/speedtest-x">speedtest-x 项目地址</a>
+</div>
+
+<script src="https://www.layuicdn.com/layui/layui.js" charset="utf-8"></script>
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'/backend/results-api.php'
+            ,cellMinWidth: 80
+            ,cols: [[
+                {field:'ip', title: 'IP地址'}
+                ,{field:'isp', title: '运营商'}
+                ,{field:'addr', title: '城市'}
+                ,{field:'dspeed', title: '下载速度 (Mbps)', sort: true, align: 'right'}
+                ,{field:'uspeed', title: '上传速度 (Mbps)', sort: true, align: 'right'}
+                ,{field:'ping', title: 'Ping (ms)', sort: true, align: 'right'}
+                ,{field:'jitter', title: '抖动 (ms)', sort: true, align: 'right'}
+                ,{field:'created', title: '测试时间', sort: true}
+            ]]
+        });
+    });
+</script>
+
+</body>
+</html>

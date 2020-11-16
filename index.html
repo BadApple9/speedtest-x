@@ -10,6 +10,8 @@
 
 //INITIALIZE SPEEDTEST
 var s=new Speedtest(); //create speedtest object
+var xhr=new XMLHttpRequest();
+var url_report='backend/report.php';
 s.onupdate=function(data){ //callback to update data in UI
     I("ip").textContent=data.clientIp;
     I("dlText").textContent=(data.testState==1&&data.dlStatus==0)?"...":data.dlStatus;
@@ -17,7 +19,19 @@ s.onupdate=function(data){ //callback to update data in UI
     I("pingText").textContent=data.pingStatus;
     I("jitText").textContent=data.jitterStatus;
     var prog=(Number(data.dlProgress)*2+Number(data.ulProgress)*2+Number(data.pingProgress))/5;
-    I("progress").style.width=(100*prog)+"%";
+	I("progress").style.width=(100*prog)+"%";
+	var ipIspArr = I("ip").textContent.split(' - ', 3);
+	var ip = ipIspArr[0];
+	var isp = ipIspArr[1];
+	var addr = ipIspArr[2] === undefined? '' :ipIspArr[2];
+	var progress = Math.floor(100*prog);
+	if (progress > 20 && (progress % 10 == 0)) {
+		var params = 'ip='+ip+'&isp='+isp+'&addr='+addr+'&dspeed='+I("dlText").textContent+'&uspeed='+I("ulText").textContent+'&ping='+I("pingText").textContent
+						+'&jitter='+I("jitText").textContent;
+		xhr.open('POST', url_report, true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(params);
+	}
 }
 s.onend=function(aborted){ //callback for test ended/aborted
     I("startStopBtn").className=""; //show start button again
@@ -204,7 +218,7 @@ function I(id){return document.getElementById(id);}
 		IP Address: <span id="ip"></span>
 	</div>
 </div>
-<a href="https://github.com/BadApple9/speedtest-x">Speedtext-X Source code</a>
+<a href="https://github.com/BadApple9/speedtest-x">speedtest-x 项目地址</a>
 <script type="text/javascript">
     initUI();
 </script>
