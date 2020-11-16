@@ -12,6 +12,7 @@
 var s=new Speedtest(); //create speedtest object
 var xhr=new XMLHttpRequest();
 var url_report='./backend/report.php';
+var milestone=0;
 s.onupdate=function(data){ //callback to update data in UI
     I("ip").textContent=data.clientIp;
     I("dlText").textContent=(data.testState==1&&data.dlStatus==0)?"...":data.dlStatus;
@@ -25,12 +26,13 @@ s.onupdate=function(data){ //callback to update data in UI
 	var isp = ipIspArr[1];
 	var addr = ipIspArr[2] === undefined? '' :ipIspArr[2];
 	var progress = Math.floor(100*prog);
-	if (progress > 20 && (progress % 10 == 0)) {
+	if (progress > 20 && (progress % 10 == 0) && progress != milestone) {
 		var params = 'ip='+ip+'&isp='+isp+'&addr='+addr+'&dspeed='+I("dlText").textContent+'&uspeed='+I("ulText").textContent+'&ping='+I("pingText").textContent
 						+'&jitter='+I("jitText").textContent;
 		xhr.open('POST', url_report, true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(params);
+		milestone = progress;
 	}
 }
 s.onend=function(aborted){ //callback for test ended/aborted
