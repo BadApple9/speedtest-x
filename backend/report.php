@@ -19,6 +19,8 @@ $reportData = [
     "created" => date('Y-m-d H:i:s', time()),
 ];
 
+if (empty($reportData['ip'])) exit;
+
 $oldLog = $store->where('ip', '=', $reportData['ip'])->fetch();
 
 if (is_array($oldLog) && empty($oldLog)) {
