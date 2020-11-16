@@ -100,7 +100,8 @@ function getIpInfoTokenString()
  */
 function getIspInfo($ip)
 {
-    $json = file_get_contents('https://ipinfo.io/'.$ip.'/json'.getIpInfoTokenString());
+//    $json = file_get_contents('https://ipinfo.io/'.$ip.'/json'.getIpInfoTokenString());
+    $json = file_get_contents('https://api.ip.sb/geoip/' . $ip);
     if (!is_string($json)) {
         return null;
     }
@@ -122,15 +123,15 @@ function getIsp($rawIspInfo)
 {
     if (
         !is_array($rawIspInfo)
-        || !array_key_exists('org', $rawIspInfo)
-        || !is_string($rawIspInfo['org'])
-        || empty($rawIspInfo['org'])
+        || !array_key_exists('organization', $rawIspInfo)
+        || !is_string($rawIspInfo['organization'])
+        || empty($rawIspInfo['organization'])
     ) {
-        return 'Unknown ISP';
+        return 'Unknown';
     }
 
     // Remove AS##### from ISP name, if present
-    return preg_replace('/AS\\d+\\s/', '', $rawIspInfo['org']);
+    return $rawIspInfo['organization'];
 }
 
 /**
@@ -294,7 +295,6 @@ function sendHeaders()
 function sendResponse(
     $ip,
     $ipInfo = null,
-    $distance = null,
     $rawIspInfo = null
 ) {
     $processedString = $ip;
@@ -306,10 +306,7 @@ function sendResponse(
         is_array($rawIspInfo)
         && array_key_exists('country', $rawIspInfo)
     ) {
-        $processedString .= ', '.$rawIspInfo['country'];
-    }
-    if (is_string($distance)) {
-        $processedString .= ' ('.$distance.')';
+        $processedString .= ' - '.$rawIspInfo['country'] . ',' . $rawIspInfo['region'] . ',' . $rawIspInfo['city'];
     }
 
     sendHeaders();
@@ -320,7 +317,6 @@ function sendResponse(
 }
 
 $ip = getClientIp();
-
 $localIpInfo = getLocalOrPrivateIpInfo($ip);
 // local ip, no need to fetch further information
 if (is_string($localIpInfo)) {
@@ -335,6 +331,6 @@ if (!isset($_GET['isp'])) {
 
 $rawIspInfo = getIspInfo($ip);
 $isp = getIsp($rawIspInfo);
-$distance = getDistance($rawIspInfo);
+//$distance = getDistance($rawIspInfo);
 
-sendResponse($ip, $isp, $distance, $rawIspInfo);
+sendResponse($ip, $isp, $rawIspInfo);
