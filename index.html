@@ -11,7 +11,7 @@
 //INITIALIZE SPEEDTEST
 var s=new Speedtest(); //create speedtest object
 var xhr=new XMLHttpRequest();
-var url_report='backend/report.php';
+var url_report='./backend/report.php';
 s.onupdate=function(data){ //callback to update data in UI
     I("ip").textContent=data.clientIp;
     I("dlText").textContent=(data.testState==1&&data.dlStatus==0)?"...":data.dlStatus;
