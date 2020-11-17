@@ -13,6 +13,13 @@ speedtest-x 使用文件数据库来保存来自不同用户的测速结果，�
 
 Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地址：[https://xiaozhu.win](https://xiaozhu.win)
 
+## 使用
+
+1、下载本仓库并解压到网站目录，访问 `{你的网站地址}/index.html` 进行测速
+2、打开 `{你的网站地址}/results.html` 查看测速记录 
+
+> 修改 `backend/config.php` 中的 `MAX_LOG_COUNT` 可定义最大可保存多少条测速记录
+
 ## 环境要求
  - PHP 5.6+
 
