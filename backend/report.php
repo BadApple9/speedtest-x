@@ -8,8 +8,11 @@ $store = \SleekDB\SleekDB::store('speedlogs', './',[
     'timeout' => 120
 ]);
 
+$ip = filter_var($_POST['ip'], FILTER_SANITIZE_STRING);
+$ipMask = preg_replace('/((?:\d{1,3}\.){3})\d{1,3}/','$1*', $ip);
+
 $reportData = [
-    "ip" => filter_var($_POST['ip'], FILTER_SANITIZE_STRING),
+    "ip" => $ipMask,
     "isp" => filter_var($_POST['isp'], FILTER_SANITIZE_STRING),
     "addr" => filter_var($_POST['addr'], FILTER_SANITIZE_STRING),
     "dspeed" => filter_var($_POST['dspeed'], FILTER_SANITIZE_STRING),

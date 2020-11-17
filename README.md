@@ -11,7 +11,7 @@ speedtest-x 使用文件数据库来保存来自不同用户的测速结果，�
 
 ## 恰饭
 
-Jetbrains全家桶教育许可，正规国内大学渠道，9.9元，购买地址：[https://xiaozhu.win](https://xiaozhu.win)
+Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地址：[https://xiaozhu.win](https://xiaozhu.win)
 
 ## 环境要求
  - PHP 5.6+
