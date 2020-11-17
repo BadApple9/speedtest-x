@@ -18,8 +18,8 @@ Jetbrains全家桶教育许可，正规国内大学渠道，9.9元，购买地�
 
 ## 截图
 
-![index](https://raw.githubusercontent.com/BadApple9/images/main/index.png)
-![results](https://raw.githubusercontent.com/BadApple9/images/main/results.png)
+![index](https://raw.githubusercontent.com/BadApple9/images/main/indexdemo.png)
+![results](https://raw.githubusercontent.com/BadApple9/images/main/resultsdemo.png)
 
 ## 鸣谢
  - [LibreSpeed](https://github.com/librespeed/speedtest)
