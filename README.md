@@ -16,6 +16,11 @@ Jetbrains全家桶教育许可，正规国内大学渠道，9.9元，购买地�
 ## 环境要求
  - PHP 5.6+
 
+## 截图
+
+![index](https://raw.githubusercontent.com/BadApple9/images/main/index.png)
+![results](https://raw.githubusercontent.com/BadApple9/images/main/results.png)
+
 ## 鸣谢
  - [LibreSpeed](https://github.com/librespeed/speedtest)
  - [ip.sb](https://ip.sb)
