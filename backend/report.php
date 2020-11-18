@@ -15,10 +15,10 @@ $reportData = [
     "ip" => $ipMask,
     "isp" => filter_var($_POST['isp'], FILTER_SANITIZE_STRING),
     "addr" => filter_var($_POST['addr'], FILTER_SANITIZE_STRING),
-    "dspeed" => filter_var($_POST['dspeed'], FILTER_SANITIZE_STRING),
-    "uspeed" => filter_var($_POST['uspeed'], FILTER_SANITIZE_STRING),
-    "ping" => filter_var($_POST['ping'], FILTER_SANITIZE_STRING),
-    "jitter" => filter_var($_POST['jitter'], FILTER_SANITIZE_STRING),
+    "dspeed" => (double) filter_var($_POST['dspeed'], FILTER_SANITIZE_STRING),
+    "uspeed" => (double) filter_var($_POST['uspeed'], FILTER_SANITIZE_STRING),
+    "ping" => (double) filter_var($_POST['ping'], FILTER_SANITIZE_STRING),
+    "jitter" => (double) filter_var($_POST['jitter'], FILTER_SANITIZE_STRING),
     "created" => date('Y-m-d H:i:s', time()),
 ];
 
