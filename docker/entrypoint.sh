@@ -4,7 +4,7 @@ set -e
 set -x
 
 # Cleanup
-rm -rf /var/www/html/*
+#rm -rf /var/www/html/*
 
 # Copy frontend files
 cp /speedtest/*.js /var/www/html/
@@ -12,6 +12,7 @@ cp /speedtest/*.html /var/www/html/
 
 cp -r /speedtest/backend/ /var/www/html/backend
 
+ln -snf /var/www/html/backend/speedlogs /speedlogs
 
 chown -R www-data /var/www/html/*
 

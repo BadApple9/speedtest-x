@@ -22,9 +22,15 @@ COPY *.html /speedtest/
 
 COPY docker/entrypoint.sh /
 
+ENV TIME_ZONE=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TIME_ZONE /etc/localtime && echo $TIME_ZONE > /etc/timezone
+RUN printf '[PHP]\ndate.timezone = "Asia/Shanghai"\n' > /usr/local/etc/php/conf.d/tzone.ini
+
 # Prepare environment variabiles defaults
 
 ENV WEBPORT=80
+
+VOLUME ["/speedlogs"]
 
 # Final touches
 
