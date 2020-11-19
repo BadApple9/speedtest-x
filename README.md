@@ -13,7 +13,9 @@ speedtest-x 使用文件数据库来保存来自不同用户的测速结果，�
 
 Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地址：[https://xiaozhu.win](https://xiaozhu.win)
 
-## 常规部署
+## 部署与使用
+
+#### 常规部署
 
 1、下载本仓库并解压到网站目录，访问 `{域名}/index.html` 进行测速
 
@@ -21,14 +23,15 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 > 修改 `backend/config.php` 中的 `MAX_LOG_COUNT` 可定义最大可保存多少条测速记录
 
-## Docker 部署
+#### Docker 部署
 
 1、拉取 Docker 镜像 `docker pull badapple9/speedtest-x`
 
 2、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
 
-> -d：以常驻进程模式启动
-> 9001: 默认容器开放端口，可改为其他端口
+> **-d**：以常驻进程模式启动
+>
+> **9001**: 默认容器开放端口，可改为其他端口
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
