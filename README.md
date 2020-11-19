@@ -25,9 +25,10 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 1、拉取 Docker 镜像 `docker pull badapple9/speedtest-x`
 
-2、运行容器 `docker run -p 80:80 -it badapple9/speedtest-x`
+2、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
 
-> 容器开放端口默认为 80，如果需要修改，请修改启动参数。比如，要改成 8080 端口 `docker run -p 8080:80 -it badapple9/speedtest-x`
+> -d：以常驻进程模式启动
+> 9001: 默认容器开放端口，可改为其他端口
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
