@@ -25,7 +25,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 #### Docker 部署
 
-1、拉取 Docker 镜像 `docker pull badapple9/speedtest-x`
+1、拉取 [Docker 镜像](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
 
 2、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
 
@@ -47,7 +47,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 **2020/11/19**
 
-> Docker 镜像上线
+> Docker 镜像上线 [https://hub.docker.com/r/badapple9/speedtest-x](https://hub.docker.com/r/badapple9/speedtest-x)
 
 **2020/11/18**
 
