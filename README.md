@@ -21,7 +21,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 2、打开 `{域名}/results.html` 查看测速记录 
 
-> 修改 `backend/config.php` 中的 `MAX_LOG_COUNT` 可定义最大可保存多少条测速记录
+> Tips：修改 `backend/config.php` 中的 `MAX_LOG_COUNT` 可定义最大可保存多少条测速记录
 
 #### Docker 部署
 
@@ -42,6 +42,22 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 ![index](https://raw.githubusercontent.com/BadApple9/images/main/indexdemo.png)
 ![results](https://raw.githubusercontent.com/BadApple9/images/main/resultsdemo.png)
+
+## 更新记录
+
+**2020/11/18**
+
+上报速度与延迟值强制使用浮点类型，修复结果页表格按照下载速度或 ping 值排序错误的问题
+
+**2020/11/16**
+
+优化测速结果上报频率
+
+掩去测速结果 IP D 段
+
+**2020/11/13**
+
+Release
 
 ## 鸣谢
  - [LibreSpeed](https://github.com/librespeed/speedtest)
