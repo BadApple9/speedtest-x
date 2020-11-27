@@ -18,8 +18,8 @@ function getChunkCount()
         return 4;
     }
 
-    if ((int) $_GET['ckSize'] > 1024) {
-        return 1024;
+    if ((int) $_GET['ckSize'] > 50) {
+        return 50;
     }
 
     return (int) $_GET['ckSize'];
