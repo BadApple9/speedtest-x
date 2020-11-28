@@ -1,10 +1,11 @@
 # speedtest-x
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/badapple9/speedtest-x) ![GitHub last commit](https://img.shields.io/github/last-commit/badapple9/speedtest-x) ![GitHub](https://img.shields.io/github/license/badapple9/speedtest-x)
 
 本仓库为 [LibreSpeed](https://github.com/librespeed/speedtest) 的延伸项目，LibreSpeed 是一个非常轻巧的网站测速工具。
 
 speedtest-x 使用文件数据库来保存来自不同用户的测速结果，方便您查看全国不同地域与运营商的测速效果。
 
-**注意**：基于网页测速的原理，程序会生成无用文件供测速者下载来计算真实下行带宽，一定程度上存在被恶意刷流量的风险，在对外分享你的测速页面后，请注意观察服务器流量使用情况，避免流量使用异常。
+**❗ 注意**：基于网页测速的原理，程序会生成无用文件供测速者下载来计算真实下行带宽，一定程度上存在被恶意刷流量的风险，在对外分享你的测速页面后，请注意观察服务器流量使用情况，避免流量使用异常。
 
 ## 扩展细节
  - 用户测速会上传测速记录并保存至网站服务器
