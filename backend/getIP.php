@@ -5,6 +5,7 @@
  * Output from this script is a JSON string composed of 2 objects: a string called processedString which contains the combined IP, ISP, Contry and distance as it can be presented to the user; and an object called rawIspInfo which contains the raw data from ipinfo.io (will be empty if isp detection is disabled).
  * Client side, the output of this script can be treated as JSON or as regular text. If the output is regular text, it will be shown to the user as is.
  */
+require_once "./config.php";
 
 error_reporting(0);
 
@@ -98,10 +99,14 @@ function getIpInfoTokenString()
  *
  * @return array|null
  */
-function getIspInfo($ip)
+function getIspInfo($ip, $ipService)
 {
-//    $json = file_get_contents('https://ipinfo.io/'.$ip.'/json'.getIpInfoTokenString());
-    $json = file_get_contents('https://api.ip.sb/geoip/' . $ip);
+    $json = '';
+    if ($ipService == 'ip.sb') {
+        $json = file_get_contents('https://api.ip.sb/geoip/' . $ip);
+    } elseif ($ipService == 'ipinfo.io') {
+        $json = file_get_contents('https://ipinfo.io/'.$ip.'/json'.getIpInfoTokenString());
+    }
     if (!is_string($json)) {
         return null;
     }
@@ -119,20 +124,32 @@ function getIspInfo($ip)
  *
  * @return string
  */
-function getIsp($rawIspInfo)
+function getIsp($rawIspInfo, $ipService)
 {
-    if (
-        !is_array($rawIspInfo)
-        || !array_key_exists('organization', $rawIspInfo)
-        || !is_string($rawIspInfo['organization'])
-        || empty($rawIspInfo['organization'])
-    ) {
-        return 'Unknown';
+    if ($ipService == 'ip.sb') {
+        if (
+            !is_array($rawIspInfo)
+            || !array_key_exists('organization', $rawIspInfo)
+            || !is_string($rawIspInfo['organization'])
+            || empty($rawIspInfo['organization'])
+        ) {
+            return 'Unknown';
+        }
+        return $rawIspInfo['organization'];
+    } elseif ($ipService == 'ipinfo.io') {
+        if (
+            !is_array($rawIspInfo)
+            || !array_key_exists('org', $rawIspInfo)
+            || !is_string($rawIspInfo['org'])
+            || empty($rawIspInfo['org'])
+        ) {
+            return 'Unknown';
+        }
+        return preg_replace('/AS\\d+\\s/', '', $rawIspInfo['org']);
     }
-
-    // Remove AS##### from ISP name, if present
-    return $rawIspInfo['organization'];
+    return 'Unknown';
 }
+
 
 /**
  * @return string|null
@@ -329,8 +346,8 @@ if (!isset($_GET['isp'])) {
     exit;
 }
 
-$rawIspInfo = getIspInfo($ip);
-$isp = getIsp($rawIspInfo);
+$rawIspInfo = getIspInfo($ip, IP_SERVICE);
+$isp = getIsp($rawIspInfo, IP_SERVICE);
 //$distance = getDistance($rawIspInfo);
 
 sendResponse($ip, $isp, $rawIspInfo);
