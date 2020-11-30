@@ -7,9 +7,11 @@ function maskLastSegment($ip) {
     $ipaddr = inet_pton($ip);
     if (strlen($ipaddr) == 4) {
         $ipaddr[3] = chr(0);
-    } else {
+    } elseif (strlen($ipaddr) == 16) {
         $ipaddr[14] = chr(0);
         $ipaddr[15] = chr(0);
+    } else {
+        return "";
     }
     return rtrim(inet_ntop($ipaddr),"0")."*";
 }
