@@ -22,6 +22,14 @@ if [ "$WEBPORT" != "80" ]; then
   sed -i "s/*:80>/*:$WEBPORT>/g" /etc/apache2/sites-available/000-default.conf
 fi
 
+if [ "$MAX_LOG_COUNT" != "100" ]; then
+  sed -i "s/^const MAX_LOG_COUNT = 100/const MAX_LOG_COUNT = $MAX_LOG_COUNT/g" /var/www/html/backend/config.php
+fi
+
+if [ "$IP_SERVICE" != "ip.sb" ]; then
+  sed -i "s/^const IP_SERVICE = 'ip.sb'/const IP_SERVICE = '$IP_SERVICE'/g" /var/www/html/backend/config.php
+fi
+
 echo "Done, Starting APACHE"
 
 # This runs apache

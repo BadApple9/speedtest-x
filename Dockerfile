@@ -29,6 +29,8 @@ RUN printf '[PHP]\ndate.timezone = "Asia/Shanghai"\n' > /usr/local/etc/php/conf.
 # Prepare environment variabiles defaults
 
 ENV WEBPORT=80
+ENV MAX_LOG_COUNT=100
+ENV IP_SERVICE="ip.sb"
 
 VOLUME ["/speedlogs"]
 
