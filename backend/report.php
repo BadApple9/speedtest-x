@@ -3,16 +3,26 @@
 require_once "./SleekDB/SleekDB.php";
 require_once "./config.php";
 
+function maskLastSegment($ip) {
+    $ipaddr = inet_pton($ip);
+    if (strlen($ipaddr) == 4) {
+        $ipaddr[3] = chr(0);
+    } elseif (strlen($ipaddr) == 16) {
+        $ipaddr[14] = chr(0);
+        $ipaddr[15] = chr(0);
+    } else {
+        return "";
+    }
+    return rtrim(inet_ntop($ipaddr),"0")."*";
+}
+
 $store = \SleekDB\SleekDB::store('speedlogs', './',[
     'auto_cache' => false,
     'timeout' => 120
 ]);
 
-$ip = filter_var($_POST['ip'], FILTER_SANITIZE_STRING);
-$ipMask = preg_replace('/((?:\d{1,3}\.){3})\d{1,3}/','$1*', $ip);
-
 $reportData = [
-    "ip" => $ipMask,
+    "ip" => maskLastSegment(filter_var($_POST['ip'], FILTER_SANITIZE_STRING)),
     "isp" => filter_var($_POST['isp'], FILTER_SANITIZE_STRING),
     "addr" => filter_var($_POST['addr'], FILTER_SANITIZE_STRING),
     "dspeed" => (double) filter_var($_POST['dspeed'], FILTER_SANITIZE_STRING),
