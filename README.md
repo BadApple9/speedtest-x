@@ -24,7 +24,11 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 2、打开 `{域名}/results.html` 查看测速记录 
 
-> Tips：修改 `backend/config.php` 中的 `MAX_LOG_COUNT` 可定义最大可保存多少条测速记录
+> Tips：`backend/config.php` 中可定义一些自定义配置：
+> 
+> `MAX_LOG_COUNT = 100`：最大可保存多少条测速记录
+>
+> `IP_SERVICE = 'ip.sb'`：使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
 
 #### Docker 部署
 
@@ -35,6 +39,14 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 > **-d**：以常驻进程模式启动
 >
 > **9001**: 默认容器开放端口，可改为其他端口
+>
+> 启动时可指定的环境变量：
+>
+> **-e WEBPORT=80**: 容器内使用的端口
+>
+> **-e MAX_LOG_COUNT=100**: 最大可保存多少条测速记录
+>
+> **-e IP_SERVICE=ip.sb**: 使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
