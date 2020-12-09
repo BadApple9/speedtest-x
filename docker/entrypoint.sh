@@ -30,6 +30,10 @@ if [ "$IP_SERVICE" != "ip.sb" ]; then
   sed -i "s/^const IP_SERVICE = 'ip.sb'/const IP_SERVICE = '$IP_SERVICE'/g" /var/www/html/backend/config.php
 fi
 
+if [ "$SAME_IP_MULTI_LOGS" != "false" ]; then
+  sed -i "s/^const SAME_IP_MULTI_LOGS = false/const SAME_IP_MULTI_LOGS = $SAME_IP_MULTI_LOGS/g" /var/www/html/backend/config.php
+fi
+
 echo "Done, Starting APACHE"
 
 # This runs apache
