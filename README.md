@@ -30,7 +30,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 >
 > `IP_SERVICE = 'ip.sb'`：使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
 >
-> `SAME_IP_MULTI_LOGS = false`：允许同一IP记录多条测速结果
+> `SAME_IP_MULTI_LOGS = false`：是否允许同一IP记录多条测速结果
 
 #### Docker 部署
 
@@ -50,7 +50,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 >
 > **-e IP_SERVICE=ip.sb**: 使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
 >
-> **-e SAME_IP_MULTI_LOGS=false**: 允许同一IP记录多条测速结果
+> **-e SAME_IP_MULTI_LOGS=false**: 是否允许同一IP记录多条测速结果
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
