@@ -11,6 +11,6 @@ const MAX_LOG_COUNT = 100;
 const IP_SERVICE = 'ip.sb';
 
 /**
- * todo 是否允许同一IP记录多次测速结果
+ * 允许同一IP记录多条测速结果
  */
-//const SAME_IP_MULTI_LOGS = false;
+const SAME_IP_MULTI_LOGS = false;
