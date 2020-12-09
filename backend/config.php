@@ -11,6 +11,6 @@ const MAX_LOG_COUNT = 100;
 const IP_SERVICE = 'ip.sb';
 
 /**
- * 允许同一IP记录多条测速结果
+ * 是否允许同一IP记录多条测速结果
  */
 const SAME_IP_MULTI_LOGS = false;
