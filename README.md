@@ -49,6 +49,8 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 > **-e MAX_LOG_COUNT=100**: 最大可保存多少条测速记录
 >
 > **-e IP_SERVICE=ip.sb**: 使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
+>
+> **-e SAME_IP_MULTI_LOGS=false**: 允许同一IP记录多条测速结果
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
