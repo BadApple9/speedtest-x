@@ -18,7 +18,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 ## 部署与使用
 
-#### 常规部署
+#### 常规部署 (环境要求：PHP 5.6+)
 
 1、下载本仓库并解压到网站目录，访问 `{域名}/index.html` 进行测速
 
@@ -54,15 +54,16 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
-## 环境要求
- - PHP 5.6+
-
 ## 截图
 
 ![index](https://raw.githubusercontent.com/BadApple9/images/main/indexdemo.png)
 ![results](https://raw.githubusercontent.com/BadApple9/images/main/resultsdemo.png)
 
 ## 更新记录
+
+**2020/12/10**
+
+> 增加可配置项 `SAME_IP_MULTI_LOGS`，可设置是否允许同一IP记录多条测速结果
 
 **2020/12/01**
 
