@@ -23,11 +23,11 @@
 
 async function mainfunc() {
     var color = Chart.helpers.color;
-    console.log(color)
+    //console.log(color)
     var datareq = await fetch('backend/results-api.php');
-    console.log(datareq)
+    //console.log(datareq)
     var dataraw = await datareq.text();
-    console.log(dataraw)
+    //console.log(dataraw)
     try {
         dataraw = JSON.parse(dataraw);
     } catch {
@@ -90,6 +90,42 @@ async function mainfunc() {
                 display: true,
                 text: 'ISP Speed Chart'
             },
+			tooltips: {
+					mode: 'nearest',
+					callbacks: {
+						title: function(TooltipItem, data){  
+							// console.log(TooltipItem);
+							// console.log(data); 
+							// console.log(data["datasets"][TooltipItem[0]["datasetIndex"]]["label"])
+                                                        return data["datasets"][TooltipItem[0]["datasetIndex"]]["label"]
+						},
+						label:function(TooltipItem, data){
+                                                        return data["datasets"][TooltipItem["datasetIndex"]]["data"][TooltipItem["index"]]["label"]["isp"];
+                                                }, 
+						footer: function(TooltipItem, data){
+							// console.log(TooltipItem);
+							// console.log(data); 
+							displaydata = data["datasets"][TooltipItem[0]["datasetIndex"]]["data"][TooltipItem[0]["index"]]["label"]; 
+							showdict = { 
+							    location:  displaydata["addr"],
+							    Download:  displaydata["dspeed"],
+							    Upload:  displaydata["uspeed"],
+							    Ping:  displaydata["ping"],
+							    Jitter:  displaydata["jitter"],
+							    IP:  displaydata["ip"],
+							    // ISP:  displaydata["isp"],
+							};
+                                                        let showtext = ""
+                                                        for (const k of Object.keys(showdict)){
+                                                            showtext += k + ": " + showdict[k] + "\n";
+                                                        }
+                                                        return showtext
+                                                },
+
+						
+					},
+					footerFontStyle: 'normal'
+				},
 			scales: {
 					yAxes: [{
 						type: 'linear',
