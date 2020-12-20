@@ -62,16 +62,20 @@ async function mainfunc() {
     }
     datasets = datasets.sort((a, b) => a["data"].length < b["data"].length ? 1 : -1);
     for (const [i, data] of datasets.entries()) {
-        let pcolor = "gray"
         if (i === 0) {
-            pcolor = "red";
+            datasets[i]["borderColor"] = window.chartColors["red"];
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         } else if (i === 1) {
-            pcolor = "green"
+            datasets[i]["borderColor"] = "rgb(12, 176, 42)";
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         } else if (i === 2) {
-            pcolor = "blue"
+            datasets[i]["borderColor"] = "rgb(2, 104, 219)";
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         }
-        datasets[i]["borderColor"] = window.chartColors[pcolor];
-        datasets[i]["backgroundColor"] = pcolor !== "gray" ? color(window.chartColors[pcolor]).alpha(0.9).rgbString() : color(window.chartColors[pcolor]).alpha(0.1).rgbString()
+	else{
+            datasets[i]["borderColor"] = window.chartColors["gray"];;
+            datasets[i]["backgroundColor"] = color(window.chartColors["gray"]).alpha(0.1).rgbString()
+	}
     }
     console.log(datasets);
     scatterChartData = {
