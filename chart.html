@@ -113,7 +113,10 @@ async function mainfunc() {
 						ticks: {
 							userCallback: function(tick) {
 								return tick.toString() + ':00';
-							}
+							},
+                                                        beginAtZero: true,
+                                                        max: 24
+
 						},
 						scaleLabel: {
 							labelString: 'Time',
