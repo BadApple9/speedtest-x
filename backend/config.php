@@ -3,7 +3,7 @@
 /**
  * 最多保存多少条测试记录
  */
-const MAX_LOG_COUNT = 100000;
+const MAX_LOG_COUNT = 10000;
 
 /**
  * IP运营商解析服务：(1) ip.sb | (2) ipinfo.io （如果1解析ip异常，请切换成2）
