@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+        <title>ISP Speed Chart</title>
+    <script src="chartjs/Chart.min.js"></script>
+        <script src="chartjs/utils.js"></script>
+        <style>
+        canvas {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+        }
+        </style>
+</head>
+
+<body>
+        <div style="width:75%">
+                <canvas id="canvas"></canvas>
+        </div>
+        <script>
+                var color = Chart.helpers.color;
+
+async function mainfunc() {
+    var color = Chart.helpers.color;
+    console.log(color)
+    var datareq = await fetch('backend/results-api.php');
+    console.log(datareq)
+    var dataraw = await datareq.text();
+    console.log(dataraw)
+    try {
+        dataraw = JSON.parse(dataraw);
+    } catch {
+        alert("Can't get data");
+        return 0;
+    }
+
+    data_sorted = {};
+    for (const data of dataraw["data"]) {
+        let data_isp = data["isp"].split(" ").length > 1 ? data["isp"].split(" ")[0] + " " + data["isp"].split(" ")[1] : data["isp"];
+        if (data_isp in data_sorted) {
+            data_sorted[data_isp] = data_sorted[data_isp].concat([data])
+        } else {
+            data_sorted[data_isp] = [data]
+        }
+    }
+    let datasets = []
+    for (const isp of Object.keys(data_sorted)) {
+        let ispdata_chart = {
+            label: isp,
+            data: []
+        }
+        for (const ispdata of data_sorted[isp]) {
+            let [t_h, t_m, t_s] = ispdata["created"].split(" ")[1].split(":");
+            ispdata_chart["data"] = ispdata_chart["data"].concat([{
+                x: t_h * 1.0 + t_m / 60 + t_s / 3600,
+                y: ispdata["dspeed"],
+				label: ispdata
+            }]);
+        }
+        datasets = datasets.concat([ispdata_chart])
+    }
+    datasets = datasets.sort((a, b) => a["data"].length < b["data"].length ? 1 : -1);
+    for (const [i, data] of datasets.entries()) {
+        let pcolor = "gray"
+        if (i === 0) {
+            pcolor = "red";
+        } else if (i === 1) {
+            pcolor = "green"
+        } else if (i === 2) {
+            pcolor = "blue"
+        }
+        datasets[i]["borderColor"] = window.chartColors[pcolor];
+        datasets[i]["backgroundColor"] = pcolor !== "gray" ? color(window.chartColors[pcolor]).alpha(0.9).rgbString() : color(window.chartColors[pcolor]).alpha(0.1).rgbString()
+    }
+    console.log(datasets);
+    scatterChartData = {
+        datasets: datasets
+    }
+
+    var ctx = document.getElementById('canvas').getContext('2d');
+    window.myScatter = Chart.Scatter(ctx, {
+        data: scatterChartData,
+        options: {
+            title: {
+                display: true,
+                text: 'ISP Speed Chart'
+            },
+			scales: {
+					yAxes: [{
+						type: 'logarithmic',
+						position: 'bottom',
+						ticks: {
+							userCallback: function(tick) {
+								var remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
+								if (remain === 1 || remain === 2 || remain === 5) {
+									return tick.toString() + 'Mbps';
+								}
+								return '';
+							},
+						},
+						scaleLabel: {
+							labelString: 'Speed',
+							display: true,
+						}
+					}],
+					xAxes: [{
+						type: 'linear',
+						ticks: {
+							userCallback: function(tick) {
+								return tick.toString() + ':00';
+							}
+						},
+						scaleLabel: {
+							labelString: 'Time',
+							display: true
+						}
+					}]
+				}
+        }
+    });
+
+
+}
+
+
+
+                window.onload = function() {
+                        mainfunc();
+                };
+
+
+        </script>
+</body>
+
+</html>
+
