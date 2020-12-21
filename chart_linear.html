@@ -10,12 +10,21 @@
                 -moz-user-select: none;
                 -webkit-user-select: none;
                 -ms-user-select: none;
+                position: relative;
+                flex-grow: 1;
+                min-height: 0;
+                width: 100%;
+                height:100%;
         }
+	div {
+		width:100%;
+		height:100%;
+	}
         </style>
 </head>
 
 <body>
-        <div style="width:75%">
+        <div>
                 <canvas id="canvas"></canvas>
         </div>
         <script>
@@ -155,7 +164,9 @@ async function mainfunc() {
 							display: true
 						}
 					}]
-				}
+				},
+		responsive: true,
+		maintainAspectRatio: false
         }
     });
 
