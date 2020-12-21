@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+<head>
+        <title>ISP Speed Chart</title>
+    <script src="chartjs/Chart.min.js"></script>
+        <script src="chartjs/utils.js"></script>
+        <style>
+        canvas {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                position: relative;
+                flex-grow: 1;
+                min-height: 0;
+                width: 100%;
+                height:100%;
+        }
+	div {
+		width:100%;
+		height:100%;
+	}
+        </style>
+</head>
+
+<body>
+        <div>
+                <canvas id="canvas"></canvas>
+        </div>
+        <script>
+                var color = Chart.helpers.color;
+
+async function mainfunc() {
+    var color = Chart.helpers.color;
+    //console.log(color)
+    var datareq = await fetch('backend/results-api.php');
+    //console.log(datareq)
+    var dataraw = await datareq.text();
+    //console.log(dataraw)
+    try {
+        dataraw = JSON.parse(dataraw);
+    } catch {
+        alert("Can't get data");
+        return 0;
+    }
+
+    data_sorted = {};
+    for (const data of dataraw["data"]) {
+        let data_isp = data["isp"].split(" ").length > 1 ? data["isp"].split(" ")[0] + " " + data["isp"].split(" ")[1] : data["isp"];
+        if (data_isp in data_sorted) {
+            data_sorted[data_isp] = data_sorted[data_isp].concat([data])
+        } else {
+            data_sorted[data_isp] = [data]
+        }
+    }
+    let datasets = []
+    for (const isp of Object.keys(data_sorted)) {
+        let ispdata_chart = {
+            label: isp,
+            data: []
+        }
+        for (const ispdata of data_sorted[isp]) {
+            let [t_h, t_m, t_s] = ispdata["created"].split(" ")[1].split(":");
+            ispdata_chart["data"] = ispdata_chart["data"].concat([{
+                x: t_h * 1.0 + t_m / 60 + t_s / 3600,
+                y: ispdata["dspeed"],
+				label: ispdata
+            }]);
+        }
+        datasets = datasets.concat([ispdata_chart])
+    }
+    datasets = datasets.sort((a, b) => a["data"].length < b["data"].length ? 1 : -1);
+    for (const [i, data] of datasets.entries()) {
+        if (i === 0) {
+            datasets[i]["borderColor"] = window.chartColors["red"];
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+        } else if (i === 1) {
+            datasets[i]["borderColor"] = "rgb(12, 176, 42)";
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+        } else if (i === 2) {
+            datasets[i]["borderColor"] = "rgb(2, 104, 219)";
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+        }
+	else{
+            datasets[i]["borderColor"] = window.chartColors["gray"];;
+            datasets[i]["backgroundColor"] = color(window.chartColors["gray"]).alpha(0.1).rgbString()
+	}
+    }
+    console.log(datasets);
+    scatterChartData = {
+        datasets: datasets
+    }
+
+    var ctx = document.getElementById('canvas').getContext('2d');
+    window.myScatter = Chart.Scatter(ctx, {
+        data: scatterChartData,
+        options: {
+            title: {
+                display: true,
+                text: 'ISP Speed Chart'
+            },
+			tooltips: {
+					mode: 'nearest',
+					callbacks: {
+						title: function(TooltipItem, data){  
+							// console.log(TooltipItem);
+							// console.log(data); 
+							// console.log(data["datasets"][TooltipItem[0]["datasetIndex"]]["label"])
+                                                        return data["datasets"][TooltipItem[0]["datasetIndex"]]["label"]
+						},
+						label:function(TooltipItem, data){
+                                                        return data["datasets"][TooltipItem["datasetIndex"]]["data"][TooltipItem["index"]]["label"]["isp"];
+                                                }, 
+						footer: function(TooltipItem, data){
+							// console.log(TooltipItem);
+							// console.log(data); 
+							displaydata = data["datasets"][TooltipItem[0]["datasetIndex"]]["data"][TooltipItem[0]["index"]]["label"]; 
+							showdict = { 
+							    location:  displaydata["addr"],
+							    Download:  displaydata["dspeed"],
+							    Upload:  displaydata["uspeed"],
+							    Ping:  displaydata["ping"],
+							    Jitter:  displaydata["jitter"],
+							    IP:  displaydata["ip"],
+							    Time:  displaydata["created"],
+							    // ISP:  displaydata["isp"],
+							};
+                                                        let showtext = ""
+                                                        for (const k of Object.keys(showdict)){
+                                                            showtext += k + ": " + showdict[k] + "\n";
+                                                        }
+                                                        return showtext
+                                                },
+
+						
+					},
+					footerFontStyle: 'normal'
+				},
+			scales: {
+					yAxes: [{
+						type: 'linear',
+						position: 'bottom',
+						ticks: {
+							userCallback: function(tick) {
+									return tick.toString() + 'Mbps';
+							},
+						},
+						scaleLabel: {
+							labelString: 'Speed',
+							display: true,
+						}
+					}],
+					xAxes: [{
+						type: 'linear',
+						ticks: {
+							userCallback: function(tick) {
+								return tick.toString() + ':00';
+							},
+							beginAtZero: true,
+							stepSize: 3,
+							max: 24
+						},
+						scaleLabel: {
+							labelString: 'Time',
+							display: true
+						}
+					}]
+				},
+		responsive: true,
+		maintainAspectRatio: false
+        }
+    });
+
+
+}
+
+
+
+                window.onload = function() {
+                        mainfunc();
+                };
+
+
+        </script>
+</body>
+
+</html>
+
