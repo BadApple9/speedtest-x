@@ -10,17 +10,17 @@
                 -moz-user-select: none;
                 -webkit-user-select: none;
                 -ms-user-select: none;
+                position: relative;
                 flex-grow: 1;
                 min-height: 0;
                 width: 100%;
                 height:100%;
         }
-        div {
-                width:100%;
-                height:100%;
-        }
-
-	</style>
+	div {
+		width:100%;
+		height:100%;
+	}
+        </style>
 </head>
 
 <body>
@@ -32,11 +32,11 @@
 
 async function mainfunc() {
     var color = Chart.helpers.color;
-    // console.log(color)
+    //console.log(color)
     var datareq = await fetch('backend/results-api.php');
-    // console.log(datareq)
+    //console.log(datareq)
     var dataraw = await datareq.text();
-    // console.log(dataraw)
+    //console.log(dataraw)
     try {
         dataraw = JSON.parse(dataraw);
     } catch {
@@ -73,18 +73,18 @@ async function mainfunc() {
     for (const [i, data] of datasets.entries()) {
         if (i === 0) {
             datasets[i]["borderColor"] = window.chartColors["red"];
-            datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         } else if (i === 1) {
             datasets[i]["borderColor"] = "rgb(12, 176, 42)";
-            datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         } else if (i === 2) {
             datasets[i]["borderColor"] = "rgb(2, 104, 219)";
-            datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
+	    datasets[i]["backgroundColor"] = color(datasets[i]["borderColor"]).alpha(0.9).rgbString()
         }
-        else{
+	else{
             datasets[i]["borderColor"] = window.chartColors["gray"];;
             datasets[i]["backgroundColor"] = color(window.chartColors["gray"]).alpha(0.1).rgbString()
-        }
+	}
     }
     console.log(datasets);
     scatterChartData = {
@@ -99,32 +99,32 @@ async function mainfunc() {
                 display: true,
                 text: 'ISP Speed Chart'
             },
-                        tooltips: {
-                                        mode: 'nearest',
-                                        callbacks: {
-                                                title: function(TooltipItem, data){
-                                                        // console.log(TooltipItem);
-                                                        // console.log(data);
-                                                        // console.log(data["datasets"][TooltipItem[0]["datasetIndex"]]["label"])
+			tooltips: {
+					mode: 'nearest',
+					callbacks: {
+						title: function(TooltipItem, data){  
+							// console.log(TooltipItem);
+							// console.log(data); 
+							// console.log(data["datasets"][TooltipItem[0]["datasetIndex"]]["label"])
                                                         return data["datasets"][TooltipItem[0]["datasetIndex"]]["label"]
 						},
-                                                label:function(TooltipItem, data){
+						label:function(TooltipItem, data){
                                                         return data["datasets"][TooltipItem["datasetIndex"]]["data"][TooltipItem["index"]]["label"]["isp"];
-                                                },
-                                                footer: function(TooltipItem, data){
-                                                        // console.log(TooltipItem);
-                                                        // console.log(data);
-                                                        displaydata = data["datasets"][TooltipItem[0]["datasetIndex"]]["data"][TooltipItem[0]["index"]]["label"];
-                                                        showdict = {
-                                                            location:  displaydata["addr"],
-                                                            Download:  displaydata["dspeed"],
-                                                            Upload:  displaydata["uspeed"],
-                                                            Ping:  displaydata["ping"],
-                                                            Jitter:  displaydata["jitter"],
-                                                            IP:  displaydata["ip"],
+                                                }, 
+						footer: function(TooltipItem, data){
+							// console.log(TooltipItem);
+							// console.log(data); 
+							displaydata = data["datasets"][TooltipItem[0]["datasetIndex"]]["data"][TooltipItem[0]["index"]]["label"]; 
+							showdict = { 
+							    location:  displaydata["addr"],
+							    Download:  displaydata["dspeed"],
+							    Upload:  displaydata["uspeed"],
+							    Ping:  displaydata["ping"],
+							    Jitter:  displaydata["jitter"],
+							    IP:  displaydata["ip"],
 							    Time:  displaydata["created"],
-                                                            // ISP:  displaydata["isp"],
-                                                        };
+							    // ISP:  displaydata["isp"],
+							};
                                                         let showtext = ""
                                                         for (const k of Object.keys(showdict)){
                                                             showtext += k + ": " + showdict[k] + "\n";
@@ -132,22 +132,17 @@ async function mainfunc() {
                                                         return showtext
                                                 },
 
-
-                                        },
-                                        footerFontStyle: 'normal'
-                                },
-
-		scales: {
+						
+					},
+					footerFontStyle: 'normal'
+				},
+			scales: {
 					yAxes: [{
-						type: 'logarithmic',
+						type: 'linear',
 						position: 'bottom',
 						ticks: {
 							userCallback: function(tick) {
-								var remain = tick / (Math.pow(10, Math.floor(Chart.helpers.log10(tick))));
-								if (remain === 1 || remain === 2 || remain === 5) {
 									return tick.toString() + 'Mbps';
-								}
-								return '';
 							},
 						},
 						scaleLabel: {
@@ -161,10 +156,9 @@ async function mainfunc() {
 							userCallback: function(tick) {
 								return tick.toString() + ':00';
 							},
-                                                        beginAtZero: true,
+							beginAtZero: true,
 							stepSize: 3,
-                                                        max: 24
-
+							max: 24
 						},
 						scaleLabel: {
 							labelString: 'Time',
@@ -173,7 +167,7 @@ async function mainfunc() {
 					}]
 				},
 		responsive: true,
-                maintainAspectRatio: false
+		maintainAspectRatio: false
         }
     });
 
