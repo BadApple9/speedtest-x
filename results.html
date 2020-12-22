@@ -11,12 +11,18 @@
     .footer {line-height: 30px; text-align: center;}
     .footer a{padding:0 6px; font-weight: 300;}
     .footer a:hover{color: green;}
-    .header {line-height: 30px; text-align: center;height:50px;padding-top:50px;}
+    .header {line-height: 30px; text-align: center;height:50px;padding-top:50px;margin-bottom: 10px;}
+    .header span>a {color:white;}
   </style>
 </head>
 <body>
 <div class="header">
   <h1>speedtest-x 测速结果</h1>
+<span class="layui-badge layui-bg-green"><a href="./chart.html" target="_blank">查看线性图表</a></span>
+  <a href="javascript:layer.tips('线性图表用于展示不同运营商在不同时段的速度表现，程序默认保留100条测速结果，可调大此数值以获得更准确的图表分析', '#tips', {
+  tips: [3, '#3595CC'],
+  time: 6000
+});"><span id="tips" class="layui-badge layui-bg-black">?</span></a>
 </div>
 
 <table class="layui-hide" id="test"></table>
