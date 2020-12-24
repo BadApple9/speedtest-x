@@ -16,6 +16,7 @@ RUN mkdir -p /speedtest/
 # Copy sources
 
 COPY backend/ /speedtest/backend
+COPY chartjs/ /speedtest/chartjs
 
 COPY *.js /speedtest/
 COPY *.html /speedtest/
