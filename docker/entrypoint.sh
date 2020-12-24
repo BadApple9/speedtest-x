@@ -11,6 +11,7 @@ cp /speedtest/*.js /var/www/html/
 cp /speedtest/*.html /var/www/html/
 
 cp -r /speedtest/backend/ /var/www/html/backend
+cp -r /speedtest/chartjs/ /var/www/html/chartjs
 
 ln -snf /var/www/html/backend/speedlogs /speedlogs
 
