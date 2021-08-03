@@ -38,18 +38,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 1、拉取 [Docker 镜像](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
 
-2。add ipv6 for docker 
-编辑 /etc/docker/daemon.json ，加上以下内容。（如果没有这个文件直接创建。）
-```
-{
-  "ipv6": true,
-  "fixed-cidr-v6": "fd00::/80",
-  "experimental": true,
-  "ip6tables": true
-}
-```
-
-3、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
+2、运行容器 `docker run -d -p 9001:80 -it badapple9/speedtest-x`
 
 > **-d**：以常驻进程模式启动
 >
@@ -64,6 +53,16 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 > **-e IP_SERVICE=ip.sb**: 使用的 IP 运营商解析服务(ip.sb 或 ipinfo.io)
 >
 > **-e SAME_IP_MULTI_LOGS=false**: 是否允许同一IP记录多条测速结果
+
+> 如果想让 Docker 容器支持 ipv6，可编辑 `/etc/docker/daemon.json` ，加上以下内容：（如果不存在这个文件则直接创建）
+> ```
+> {
+>   "ipv6": true,
+>   "fixed-cidr-v6": "fd00::/80",
+>   "experimental": true,
+>   "ip6tables": true
+> }
+> ```
 
 3、访问 `{IP}:{端口}/index.html` 进行测速
 
