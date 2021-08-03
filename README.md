@@ -38,7 +38,18 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 1、拉取 [Docker 镜像](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
 
-2、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
+2。add ipv6 for docker 
+编辑 /etc/docker/daemon.json ，加上以下内容。（如果没有这个文件直接创建。）
+```
+{
+  "ipv6": true,
+  "fixed-cidr-v6": "fd00::/80",
+  "experimental": true,
+  "ip6tables": true
+}
+```
+
+3、运行容器 `docker run [-d] -p 9001:80 -it badapple9/speedtest-x`
 
 > **-d**：以常驻进程模式启动
 >
