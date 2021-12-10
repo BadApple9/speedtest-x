@@ -38,7 +38,7 @@ Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地
 
 1、拉取 [Docker 镜像](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
 
-  (**ARM 架构的机器，执行 `docker pull stilleshan/speedtest-x`**)
+  (**ARM 架构的机器，执行 `docker pull stilleshan/speedtest-x`**，ARM 镜像由热心网友制作)
 
 2、运行容器 `docker run -d -p 9001:80 -it badapple9/speedtest-x`
 
