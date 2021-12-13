@@ -14,10 +14,6 @@ speedtest-x 使用文件数据库来保存来自不同用户的测速结果，�
  - 不依赖 MySQL，使用文件数据库
  - IP 库改用 [ip.sb](https://ip.sb)，运营商记录更为精确
 
-## 恰饭
-
-Jetbrains 全家桶教育许可，正规国内大学渠道，9.9 元，购买地址：[https://xiaozhu.win](https://xiaozhu.win)
-
 ## 部署与使用
 
 #### 常规部署 (环境要求：PHP 5.6+)
