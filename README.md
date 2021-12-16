@@ -36,7 +36,7 @@ speedtest-x 使用文件数据库来保存来自不同用户的测速结果，�
 
   (**ARM 架构的机器，执行 `docker pull stilleshan/speedtest-x`**，ARM 镜像由热心网友制作)
 
-2、运行容器 `docker run -d -p 9001:80 -it badapple9/speedtest-x`
+2、运行容器 `docker run -d -p 9001:80 -it badapple9/speedtest-x`    (**ARM 架构的机器，运行 `docker run -d -p 9001:80 -it stilleshan/speedtest-x`**)
 
 > **-d**：以常驻进程模式启动
 >
