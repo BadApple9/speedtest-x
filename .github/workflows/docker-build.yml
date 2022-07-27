@@ -1,0 +1,43 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:    
+      - 'docker'
+      
+env:
+  APP_NAME: speedtest-x
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.5
+        
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Generate Image Tag
+        run: echo "TAG=$(date +%Y)-$(date +%m)-$(date +%d)" >> $GITHUB_ENV
+      
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          platforms: |
+            linux/amd64
+            linux/arm64
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:${{ env.TAG }}
