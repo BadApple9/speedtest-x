@@ -4,6 +4,8 @@ on:
   push:
     branches:    
       - 'docker'
+
+  workflow_dispatch:
       
 env:
   APP_NAME: speedtest-x
