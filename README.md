@@ -77,4 +77,4 @@ Optional arguments:
 
 ## License
 
-See [License]([[https://github.com/rakibtg/SleekDB]()](https://github.com/BadApple9/speedtest-x/blob/master/LICENSE))
+See [License](https://github.com/BadApple9/speedtest-x/blob/master/LICENSE)
