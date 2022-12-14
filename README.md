@@ -20,34 +20,36 @@ speedtest-x uses file datebase to save speedtest results from various users. Thu
 
 ## Quick start
 
-#### <img src='https://img.icons8.com/fluency/512/docker.png' width="10%"></img>Deploy by Docker (Supported platforms: AMD64/ARM64)
-1. Pull [Image](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
-2. Run container `docker run -d -p 9001:80 -it badapple9/speedtest-x`
-
-Optional arguments:
-
-> **-e MAX_LOG_COUNT=100**: Maximum results size, 100 by default
+#### <img src='https://img.icons8.com/fluency/512/docker.png' width="2%"></img> Deploy by Docker (Supported platforms: AMD64/ARM64)
+> 1. Pull [Image](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
+> 2. Run container `docker run -d -p 9001:80 -it badapple9/speedtest-x`
 >
-> **-e IP_SERVICE=ip.sb**: IP info provider (Options: ip.sb / ipinfo.io), ip.sb by default
+>> Optional arguments:
+>>
+>>> **-e MAX_LOG_COUNT=100**: Maximum results size, 100 by default
+>>>
+>>> **-e IP_SERVICE=ip.sb**: IP info provider (Options: ip.sb / ipinfo.io), ip.sb by default
+>>>
+>>> **-e SAME_IP_MULTI_LOGS=false**: Whether to allow the same user IP to record multiple speedtest results, false by default.
+>>
+>> If you want support IPV6 in a Docker container, edit `/etc/docker/daemon.json`:
+>>> ```
+>>> {
+>>>   "ipv6": true,
+>>>   "fixed-cidr-v6": "fd00::/80",
+>>>   "experimental": true,
+>>>   "ip6tables": true
+>>> }
+>>> ```
 >
-> **-e SAME_IP_MULTI_LOGS=false**: Whether to allow the same user IP to record multiple speedtest results, false by default.
+>3. Open `{your_ip}:9001`
 
-> If you want support IPV6 in a Docker container, edit `/etc/docker/daemon.json`:
-> ```
-> {
->   "ipv6": true,
->   "fixed-cidr-v6": "fd00::/80",
->   "experimental": true,
->   "ip6tables": true
-> }
-> ```
+-------
 
-3. Open `{your_ip}:9001`
+#### <img src='https://img.icons8.com/dusk/512/php.png' width="2%"></img> General deploy (Require: PHP5.6+)
 
-#### General deploy (Require: PHP5.6+)
-
-1. Download repository files and unzip to website directory, open `{your_domain_name}/index.html`.
-2. Open `{your_domain_name}/results.html` to check out speedtest result datasheet.
+>1. Download repository files and unzip to website directory, open `{your_domain_name}/index.html`.
+>2. Open `{your_domain_name}/results.html` to check out speedtest result datasheet.
 
 ## Settings
 
