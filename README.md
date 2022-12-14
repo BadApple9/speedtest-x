@@ -20,7 +20,7 @@ speedtest-x uses file datebase to save speedtest results from various users. Thu
 
 ## Quick start
 
-### Deploy by Docker (Supported platforms: AMD64/ARM64)
+#### Deploy by Docker (Supported platforms: AMD64/ARM64)
 1. Pull [Image](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
 2. Run container `docker run -d -p 9001:80 -it badapple9/speedtest-x`
 
@@ -44,7 +44,7 @@ Optional arguments:
 
 3. Open `{your_ip}:9001`
 
-### General deploy (Require: PHP5.6+)
+#### General deploy (Require: PHP5.6+)
 
 1. Download repository files and unzip to website directory, open `{your_domain_name}/index.html`.
 2. Open `{your_domain_name}/results.html` to check out speedtest result datasheet.
