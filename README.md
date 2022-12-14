@@ -9,7 +9,7 @@ speedtest-x uses file datebase to save speedtest results from various users. Thu
 
 [Join Telegram group](https://t.me/xiaozhu5)
 
-**❗ Warning**：Based on the principle of web speedtest, this program will generate garbage files for tester to download them to calculate the downstream network bandwidth from server to local. There may be abuses by malicious tester in a certain extent, after shared your speedtest website in public, please pay attention to the condition of your server traffic to avoid an traffic overload.
+<sup>**❗ Warning**：Based on the principle of web speedtest, this program will generate garbage files for tester to download them to calculate the downstream network bandwidth from server to local. There may be abuses by malicious tester in a certain extent, after shared your speedtest website in public, please pay attention to the condition of your server traffic to avoid an traffic overload.</sup>
 
 ## Features and extensions
  - Self-hosted lightweight speedtest page
