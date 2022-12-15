@@ -22,26 +22,7 @@ speedtest-x uses file datebase to save speedtest results from various users. Thu
 
 #### <img src='https://img.icons8.com/fluency/512/docker.png' width="2%"></img> Deploy by Docker (Supported platforms: AMD64/ARM64)
 > 1. Pull [Image](https://hub.docker.com/r/badapple9/speedtest-x) `docker pull badapple9/speedtest-x`
-> 2. Run container `docker run -d -p 9001:80 -it badapple9/speedtest-x`
->
->> Optional arguments:
->>
->>> **-e MAX_LOG_COUNT=100**: Maximum results size, 100 by default
->>>
->>> **-e IP_SERVICE=ip.sb**: IP info provider (Options: ip.sb / ipinfo.io), ip.sb by default
->>>
->>> **-e SAME_IP_MULTI_LOGS=false**: Whether to allow the same user IP to record multiple speedtest results, false by default.
->>
->> If you want support IPV6 in a Docker container, edit `/etc/docker/daemon.json`:
->>> ```
->>> {
->>>   "ipv6": true,
->>>   "fixed-cidr-v6": "fd00::/80",
->>>   "experimental": true,
->>>   "ip6tables": true
->>> }
->>> ```
->
+> 2. Run container `docker run -d -p 9001:80 -it badapple9/speedtest-x` (💡 See more parameters [Here](https://github.com/BadApple9/speedtest-x/wiki/Docker-deploy))
 >3. Open `{your_ip}:9001`
 
 -------
