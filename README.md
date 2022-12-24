@@ -1,6 +1,6 @@
 <img src='https://raw.githubusercontent.com/BadApple9/images/main/logo.png'></img>
 
-![GitHub Actions Build Status](https://img.shields.io/github/workflow/status/badapple9/speedtest-x/Build%20Docker%20Image) ![GitHub last commit](https://img.shields.io/github/last-commit/badapple9/speedtest-x) ![GitHub](https://img.shields.io/github/license/badapple9/speedtest-x)
+![GitHub Actions Build Status](https://img.shields.io/github/actions/workflow/status/badapple9/speedtest-x/Build%20Docker%20Image) ![GitHub last commit](https://img.shields.io/github/last-commit/badapple9/speedtest-x) ![GitHub](https://img.shields.io/github/license/badapple9/speedtest-x)
 
 This project is an extension of [LibreSpeed](https://github.com/librespeed/speedtest), LibreSpeed is a pretty lightweight speedtest tool.
 
