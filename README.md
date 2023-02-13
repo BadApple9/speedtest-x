@@ -7,7 +7,7 @@ This project is an extension of [LibreSpeed](https://github.com/librespeed/speed
 speedtest-x uses file datebase to save speedtest results from various users. Thus you can check out different results from various countries/regions.
 
 ## 自用机场推荐：
- - [MIKI Cloud](https://miki.la/#/register?code=IZg5ZEIH)，线路很稳，同价位里服务最好的
+ - [MIKI Cloud](https://miki.la/#/register?code=IZg5ZEIH)，线路很稳，同价位里服务最好的，可访问 ChatGPT
 
 [中文文档](https://github.com/BadApple9/speedtest-x/blob/master/README_CN.md)
 
