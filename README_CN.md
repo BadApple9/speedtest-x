@@ -7,7 +7,7 @@
 speedtest-x 使用文件数据库来保存来自不同用户的测速结果，方便您查看全国不同地域与运营商的测速效果。
 
 ## 自用机场推荐：
- - [MIKI Cloud](https://miki.la/#/register?code=IZg5ZEIH)，线路很稳，同价位里服务最好的
+ - [MIKI Cloud](https://miki.la/#/register?code=IZg5ZEIH)，线路很稳，同价位里服务最好的，可访问 ChatGPT
 
 [English docs](https://github.com/BadApple9/speedtest-x/blob/master/README.md)
 
