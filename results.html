@@ -13,6 +13,19 @@
     .footer a:hover{color: green;}
     .header {line-height: 30px; text-align: center;height:50px;padding-top:50px;margin-bottom: 10px;}
     .header span>a {color:white;}
+    body {background: #FFFFFF; color: #000000; transition: background 0.3s, color 0.3s;}
+    h1 {color: #000000;}
+
+    @media (prefers-color-scheme: dark) {
+      body {background: #181818; color: #E0E0E0;}
+      .footer a {color: #909090;}
+      .footer a:hover {color: #00FF00;}
+      .header span>a {color: #BBBBBB;}
+      h1 {color: #FFFFFF;}
+      .layui-table-header th, .layui-table-cell, .layui-table-view {background: #222222; color: #E0E0E0;}
+      .layui-table-sort i {color: #E0E0E0;}
+    }
+
   </style>
 </head>
 <body>
