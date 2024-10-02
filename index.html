@@ -15,7 +15,7 @@ var url_report='./backend/report.php';
 var milestone=0;
 var key_prefix=Date.parse(new Date());
 s.onupdate=function(data){ //callback to update data in UI
-    I("ip").textContent=data.clientIp;
+    I("ip").textContent=data.clientIp || "获取失败";
     I("dlText").textContent=(data.testState==1&&data.dlStatus==0)?"...":data.dlStatus;
     I("ulText").textContent=(data.testState==3&&data.ulStatus==0)?"...":data.ulStatus;
     I("pingText").textContent=data.pingStatus;
@@ -66,7 +66,7 @@ function initUI(){
 	I("ulText").textContent="";
 	I("pingText").textContent="";
 	I("jitText").textContent="";
-	I("ip").textContent="";
+	I("ip").textContent="测速后获取";
 }
 
 function I(id){return document.getElementById(id);}
@@ -191,6 +191,43 @@ function I(id){return document.getElementById(id);}
 		transition: width 2s;
 		background-color:#90BBFF;
 	}
+
+	@media (prefers-color-scheme: dark) {
+        html, body {
+            background: #181818;
+            color: #E0E0E0;
+        }
+        h1 {
+            color: #FFFFFF;
+        }
+        #startStopBtn {
+            color: #AAAAFF;
+            border-color: #AAAAFF;
+        }
+        #startStopBtn:hover {
+            box-shadow: 0 0 2em rgba(255, 255, 255, 0.1), inset 0 0 1em rgba(255, 255, 255, 0.1);
+        }
+        #startStopBtn.running {
+            background-color: #FF5050;
+            border-color: #FF8080;
+            color: #FFFFFF;
+        }
+        #progressBar {
+            background-color: #404040;
+        }
+        #progress {
+            background-color: #6060FF;
+        }
+        #dlText {
+            color: #AAAAFF;
+        }
+        #ulText {
+            color: #50C050;
+        }
+        #pingText, #jitText {
+            color: #FF8080;
+        }
+    }
 
 </style>
 </head>
