@@ -1,9 +1,9 @@
 name: Build Docker Image
 
 on:
-  push:
-    branches:    
-      - 'docker'
+  # push:
+  #   branches:    
+  #     - 'docker'
 
   workflow_dispatch:
       
